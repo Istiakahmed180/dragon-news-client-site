@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FaPlus, FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import LeftSide from "../LeftSide/LeftSide";
 
 const Header = () => {
@@ -13,13 +14,12 @@ const Header = () => {
       variant="light"
     >
       <Container>
-        <Button as="input" type="button" value="News Portal" />{" "}
+        <Link to={"/"}>
+          <Button as="input" type="button" value="News Portal" />{" "}
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">All News</Nav.Link>
-            <Nav.Link href="#pricing">Categories</Nav.Link>
-          </Nav>
+          <Nav className="me-auto"></Nav>
           <Nav className="d-lg-block d-none d-lg-flex justify-content-center align-items-center">
             <Button
               variant="danger"
