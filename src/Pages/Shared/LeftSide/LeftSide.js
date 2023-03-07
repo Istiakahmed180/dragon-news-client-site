@@ -11,7 +11,7 @@ const LeftSide = () => {
   }, []);
 
   return (
-    <div>
+    <div className="" style={{ position: "fixed" }}>
       <h5 className="">News Category</h5>
       {categories.map((category) => (
         <Link key={category.id} to={`/category/${category.id}`}>

@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, ButtonGroup, Carousel, ListGroup } from "react-bootstrap";
 import {
-  FaDiscord,
   FaFacebook,
   FaGithub,
   FaGoogle,
   FaTwitch,
   FaTwitter,
-  FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const RightSide = () => {
+  const { googleLogInUser } = useContext(AuthContext);
+
+  const handleGoogleLogInUser = () => {
+    googleLogInUser()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
-    <div>
+    <div style={{ position: "fixed", width: "20rem" }} className="">
       <ButtonGroup className="d-flex" vertical>
-        <Button className="mb-3" variant="outline-primary">
+        <Button
+          onClick={handleGoogleLogInUser}
+          className="mb-3"
+          variant="outline-primary"
+        >
           <FaGoogle></FaGoogle> Login via Google
         </Button>
         <Button className="mb-3" variant="outline-dark">
@@ -37,12 +53,6 @@ const RightSide = () => {
           </ListGroup.Item>
           <ListGroup.Item className="mt-3">
             <FaTwitch></FaTwitch> Twitch
-          </ListGroup.Item>
-          <ListGroup.Item className="mt-3">
-            <FaWhatsapp></FaWhatsapp> WhatsApp
-          </ListGroup.Item>
-          <ListGroup.Item className="mt-3">
-            <FaDiscord></FaDiscord> Discord
           </ListGroup.Item>
         </ListGroup>
       </div>

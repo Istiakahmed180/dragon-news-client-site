@@ -24,21 +24,6 @@ const Main = () => {
         </Row>
       </Container>
       <Footer></Footer>
-      {/* <div className="d-flex justify-content-center align-items-center">
-          <Button as="input" type="button" value="News" />{" "}
-          <Navbar.Brand href="#home" className="text-primary ms-2">
-            Portal
-          </Navbar.Brand>
-        </div>
-        <div className="d-flex justify-content-center align-items-center">
-          <Button
-            variant="danger"
-            className="d-flex justify-content-center align-items-center"
-          >
-            <FaPlus className="me-2"></FaPlus> Advertise
-          </Button>{" "}
-          <FaUserCircle className="ms-3  fs-3"></FaUserCircle>
-        </div> */}
     </div>
   );
 };
