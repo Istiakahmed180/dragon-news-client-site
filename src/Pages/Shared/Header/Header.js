@@ -47,14 +47,18 @@ const Header = () => {
             {user?.uid ? (
               <div className="d-flex">
                 {user?.photoURL ? (
-                  <Image
-                    src={user.photoURL}
-                    className="ms-3"
-                    style={{ width: "43px" }}
-                    roundedCircle
-                  ></Image>
+                  <Link to={"/profile"}>
+                    <Image
+                      src={user.photoURL}
+                      className="ms-3"
+                      style={{ width: "43px" }}
+                      roundedCircle
+                    ></Image>
+                  </Link>
                 ) : (
-                  <FaUserCircle className="ms-3  fs-1 text-success"></FaUserCircle>
+                  <Link to={"/profile"}>
+                    <FaUserCircle className="ms-3  fs-1 text-success"></FaUserCircle>
+                  </Link>
                 )}
                 <Button
                   onClick={handleLogOutUser}
@@ -69,7 +73,9 @@ const Header = () => {
                 <Link to={"/login"}>
                   <Button variant="success">Login</Button>
                 </Link>
-                <FaUserCircle className="ms-3  fs-1 text-info"></FaUserCircle>
+                <Link to={"/profile"}>
+                  <FaUserCircle className="ms-3  fs-1 text-info"></FaUserCircle>
+                </Link>
               </>
             )}
           </Nav>

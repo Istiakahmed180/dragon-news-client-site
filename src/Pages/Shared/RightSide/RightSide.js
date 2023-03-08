@@ -8,16 +8,23 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const RightSide = () => {
   const { googleLogInUser } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const form = location.state?.from?.pathname || "/";
+
   const handleGoogleLogInUser = () => {
     googleLogInUser()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        navigate(form, { replace: true });
       })
       .catch((error) => {
         console.error(error);

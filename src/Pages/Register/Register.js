@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [accepted, setAccepted] = useState(false);
-  const { createUser, updateUserProfile, LogOutUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile, LogOutUser, verifyEmail } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -28,8 +30,9 @@ const Register = () => {
         console.log(user);
         form.reset();
         handleUpdateUserProfile(userName, photoURL);
-        LogOutUser();
+        handleEmailVerification();
         navigate("/login");
+        LogOutUser();
       })
       .catch((error) => {
         console.error(error);
@@ -47,6 +50,16 @@ const Register = () => {
       .then(() => {})
       .catch((error) => {
         console.error(error);
+      });
+  };
+
+  const handleEmailVerification = () => {
+    verifyEmail()
+      .then(() => {
+        toast.success("Please verify your email address!");
+      })
+      .catch((error) => {
+        setError(error.message);
       });
   };
 

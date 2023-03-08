@@ -48,15 +48,15 @@ const NewsSummary = ({ news }) => {
 
         <Card.Text>
           {details.length > 250 ? (
-            <p>
+            <>
               {details.slice(0, 247) + "..."}
               <Link to={`/news/${_id}`} style={{ textDecoration: "none" }}>
                 {" "}
                 Read More
               </Link>
-            </p>
+            </>
           ) : (
-            <p>{details}</p>
+            <>{details}</>
           )}
         </Card.Text>
       </Card.Body>

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
@@ -9,7 +10,7 @@ const LogIn = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const { logInUser } = useContext(AuthContext);
+  const { logInUser, LogOutUser, setLoading } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -27,11 +28,19 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
-        navigate(from, { replace: true });
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          LogOutUser();
+          toast.error("Your email address not verified");
+        }
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
